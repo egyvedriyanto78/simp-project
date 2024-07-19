@@ -12,6 +12,7 @@ Route::get('/dashboard', [AdminController::class, 'index']);
 
 // Book Routes
 Route::get('/book/list', [AdminController::class, 'list_book']);
+Route::get('/book/list/detail', [AdminController::class, 'detail_book']);
 Route::get('/book/table', [AdminController::class, 'table_book']);
 Route::get('/book/table/edit', [AdminController::class, 'edit_book']);
 Route::put('/book/table', [AdminController::class, 'update_book']);
@@ -41,3 +42,6 @@ Route::get('/member/table/store', [AdminController::class, 'store_member']);
 // Lainnya
 Route::get('/information/faq', [AdminController::class, 'faq']);
 Route::get('/information/contact', [AdminController::class, 'contact']);
+
+// Profile
+Route::get('/profile', [AdminController::class, 'profile']);

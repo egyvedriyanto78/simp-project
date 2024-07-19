@@ -96,7 +96,7 @@
                                     <li class="list-group-item d-flex">
                                         <div class="me-auto">Detail</div>
                                         <div>
-                                            <a href="#">
+                                            <a href="{{ url('/book/list/detail') }}">
                                                 <i class="bi bi-info-circle"></i>
                                             </a>
                                         </div>
