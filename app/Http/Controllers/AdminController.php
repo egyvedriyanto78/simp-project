@@ -22,6 +22,14 @@ class AdminController extends Controller
         return view('admin.booklist', $data);
     }
 
+    public function detail_book()
+    {
+        $data = [
+            'title' => 'Perpustakaan | Detail Buku',
+        ];
+        return view('admin.detail', $data);
+    }
+
     public function table_book()
     {
         $data = [
@@ -154,6 +162,14 @@ class AdminController extends Controller
             'title' => 'Perpustakaan | Kontak',
         ];
         return view('admin.contact', $data);
+    }
+
+    public function profile()
+    {
+        $data = [
+            'title' => 'Perpustakaan | Profil',
+        ];
+        return view('admin.profile', $data);
     }
 
 }

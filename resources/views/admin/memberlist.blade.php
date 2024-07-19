@@ -19,9 +19,9 @@
         <h3>Daftar Anggota Perpustakaan</h3>
         <div class="row row-cols-1 row-cols-md-4 g-3">
             <div class="col">
-                <div class="card" style="width: 14rem;">
+                <div class="card custom-card">
                     <img src="https://img.freepik.com/free-photo/beauty-portrait-female-face_93675-132045.jpg"
-                        class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+                        class="card-img-top custom-img" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Leonor Van Lora</h5>
                     </div>
@@ -37,10 +37,11 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col">
-                <div class="card" style="width: 14rem;">
+                <div class="card custom-card">
                     <img src="https://img.freepik.com/free-photo/beauty-portrait-female-face_93675-132045.jpg"
-                        class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+                        class="card-img-top custom-img" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Leonor Van Lora</h5>
                     </div>
@@ -56,10 +57,11 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col">
-                <div class="card" style="width: 14rem;">
+                <div class="card custom-card">
                     <img src="https://img.freepik.com/free-photo/beauty-portrait-female-face_93675-132045.jpg"
-                        class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+                        class="card-img-top custom-img" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Leonor Van Lora</h5>
                     </div>
@@ -75,10 +77,11 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col">
-                <div class="card" style="width: 14rem;">
+                <div class="card custom-card">
                     <img src="https://img.freepik.com/free-photo/beauty-portrait-female-face_93675-132045.jpg"
-                        class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+                        class="card-img-top custom-img" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Leonor Van Lora</h5>
                     </div>
@@ -94,10 +97,11 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col">
-                <div class="card" style="width: 14rem;">
+                <div class="card custom-card">
                     <img src="https://img.freepik.com/free-photo/beauty-portrait-female-face_93675-132045.jpg"
-                        class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+                        class="card-img-top custom-img" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Leonor Van Lora</h5>
                     </div>
