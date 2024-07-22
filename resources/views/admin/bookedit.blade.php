@@ -9,7 +9,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Inventaris</a></li>
-                <li class="breadcrumb-item active">Ubah Data Buku</li>
+                <li class="breadcrumb-item active">Daftar Buku</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -32,57 +32,33 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>PAG001</td>
-                    <td>Pendidikan Agama Islam Kelas X</td>
-                    <td>
-                        <img src="https://ebooks.gramedia.com/ebook-covers/43467/image_highres/ID_PAIBPX2018MTH07.jpg"
-                            class="img-fluid rounded-start table-image" alt="...">
-                    </td>
-                    <td>2023</td>
-                    <td>Pendidikan Agama</td>
-                    <td>400</td>
-                    <td>4A</td>
-                    <td>
-                        <a href="#"><i class="bi bi-pencil"></i></a>
-                        <a href="#" style="color: red; margin-left: 1rem;"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>PAG002</td>
-                    <td>Pendidikan Agama Islam Kelas XI</td>
-                    <td>
-                        <img src="https://ebooks.gramedia.com/ebook-covers/43467/image_highres/ID_PAIBPX2018MTH07.jpg"
-                            class="img-fluid rounded-start table-image" alt="...">
-                    </td>
-                    <td>2023</td>
-                    <td>Pendidikan Agama</td>
-                    <td>375</td>
-                    <td>4A</td>
-                    <td>
-                        <a href="#"><i class="bi bi-pencil"></i></a>
-                        <a href="#" style="color: red; margin-left: 1rem;"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>PAG003</td>
-                    <td>Pendidikan Agama Islam Kelas XII</td>
-                    <td>
-                        <img src="https://ebooks.gramedia.com/ebook-covers/43467/image_highres/ID_PAIBPX2018MTH07.jpg"
-                            class="img-fluid rounded-start table-image" alt="...">
-                    </td>
-                    <td>2023</td>
-                    <td>Pendidikan Agama</td>
-                    <td>375</td>
-                    <td>4A</td>
-                    <td>
-                        <a href="#"><i class="bi bi-pencil"></i></a>
-                        <a href="#" style="color: red; margin-left: 1rem;"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
+                @foreach($books as $index => $book)
+                    <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $book->id }}</td>
+                        <td>{{ $book->judul }}</td>
+                        <td>
+                            <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/puhsepuh.jpg') }}"
+                                class="img-fluid rounded-start table-image" alt="Sampul Buku">
+                        </td>
+
+                        <td>{{ $book->tahun_terbit }}</td>
+                        <td>{{ $book->kategori }}</td>
+                        <td>{{ $book->stok }}</td>
+                        <td>{{ $book->lokasi }}</td>
+                        <td>
+                            <a href="{{ url('/book/table/edit/' . $book->id) }}"><i class="bi bi-pencil"></i></a>
+                            <form action="{{ url('/book/table/' . $book->id) }}" method="POST" style="display:inline;"
+                                onsubmit="return confirmDelete()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="background:none; border:none; color:red;">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
@@ -90,4 +66,12 @@
 
 </main><!-- End #main -->
 
+@endsection
+
+@section('scripts')
+<script>
+    function confirmDelete() {
+        return confirm("Apakah yakin ingin menghapus data ini?");
+    }
+</script>
 @endsection

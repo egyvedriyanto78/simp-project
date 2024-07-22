@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookController;
 
 // Route::get('/', function () {
 //     return view('admin.home');
@@ -10,15 +11,25 @@ use App\Http\Controllers\AdminController;
 // Dashboard Route
 Route::get('/dashboard', [AdminController::class, 'index']);
 
+// Book Routes on Admin Controller
+// Route::get('/book/list', [AdminController::class, 'list_book']);
+// Route::get('/book/list/detail', [AdminController::class, 'detail_book']);
+// Route::get('/book/table', [AdminController::class, 'table_book']);
+// Route::get('/book/table/edit', [AdminController::class, 'edit_book']);
+// Route::put('/book/table', [AdminController::class, 'update_book']);
+// Route::delete('/book/table', [AdminController::class, 'delete_book']);
+// Route::get('/book/table/create', [AdminController::class, 'create_book']);
+// Route::get('/book/table/store', [AdminController::class, 'store_book']);
+
 // Book Routes
-Route::get('/book/list', [AdminController::class, 'list_book']);
-Route::get('/book/list/detail', [AdminController::class, 'detail_book']);
-Route::get('/book/table', [AdminController::class, 'table_book']);
-Route::get('/book/table/edit', [AdminController::class, 'edit_book']);
-Route::put('/book/table', [AdminController::class, 'update_book']);
-Route::delete('/book/table', [AdminController::class, 'delete_book']);
-Route::get('/book/table/create', [AdminController::class, 'create_book']);
-Route::get('/book/table/store', [AdminController::class, 'store_book']);
+Route::get('/book/list', [BookController::class, 'index']);
+Route::get('/book/list/detail/{id}', [BookController::class, 'show']);
+Route::get('/book/table', [BookController::class, 'list']);
+Route::get('/book/table/edit/{id}', [BookController::class, 'edit']);
+Route::put('/book/table/{id}', [BookController::class, 'update']);
+Route::delete('/book/table/{id}', [BookController::class, 'destroy']);
+Route::get('/book/table/create', [BookController::class, 'create']);
+Route::post('/book/table/store', [BookController::class, 'store']);
 
 // Manajemen Peminjaman Routes
 Route::get('/management/borrow', [AdminController::class, 'borrow_management']);

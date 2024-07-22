@@ -14,60 +14,60 @@ class AdminController extends Controller
         return view('admin.home', $data);
     }
 
-    public function list_book()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Katalog',
-        ];
-        return view('admin.booklist', $data);
-    }
+    // public function list_book()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Katalog',
+    //     ];
+    //     return view('admin.booklist', $data);
+    // }
 
-    public function detail_book()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Detail Buku',
-        ];
-        return view('admin.detail', $data);
-    }
+    // public function detail_book()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Detail Buku',
+    //     ];
+    //     return view('admin.detail', $data);
+    // }
 
-    public function table_book()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Daftar Buku',
-        ];
-        return view('admin.bookedit', $data);
-    }
+    // public function table_book()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Daftar Buku',
+    //     ];
+    //     return view('admin.bookedit', $data);
+    // }
 
-    public function edit_book()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Ubah Data',
-        ];
-        return view('admin.bookupdate', $data);
-    }
+    // public function edit_book()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Ubah Data',
+    //     ];
+    //     return view('admin.bookupdate', $data);
+    // }
 
-    public function update_book()
-    {
-        //
-    }
+    // public function update_book()
+    // {
+    //     //
+    // }
 
-    public function delete_book()
-    {
-        //
-    }
+    // public function delete_book()
+    // {
+    //     //
+    // }
 
-    public function create_book()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Tambah Buku',
-        ];
-        return view('admin.bookadd', $data);
-    }
+    // public function create_book()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Tambah Buku',
+    //     ];
+    //     return view('admin.bookadd', $data);
+    // }
 
-    public function store_book()
-    {
-        //
-    }
+    // public function store_book()
+    // {
+    //     //
+    // }
 
     public function borrow_management()
     {
