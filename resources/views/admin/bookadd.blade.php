@@ -18,22 +18,23 @@
 
         <h3>Tambah Buku</h3>
         <div class="container mb-3">
-            <form id="bookForm">
+            <form id="bookForm" action="{{ url('/book/table/store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-3">
                     <label for="bookId" class="form-label">ID</label>
-                    <input type="text" class="form-control" id="bookId" name="bookId" required>
+                    <input type="text" class="form-control" id="bookId" name="id" required>
                 </div>
                 <div class="mb-3">
                     <label for="bookTitle" class="form-label">Judul</label>
-                    <input type="text" class="form-control" id="bookTitle" name="bookTitle" required>
+                    <input type="text" class="form-control" id="bookTitle" name="judul" required>
                 </div>
                 <div class="mb-3">
                     <label for="bookCover" class="form-label">Sampul</label>
-                    <input class="form-control" type="file" id="bookCover" name="bookCover">
+                    <input class="form-control" type="file" id="bookCover" name="sampul">
                 </div>
                 <div class="mb-3">
                     <label for="bookYear" class="form-label">Tahun Terbit</label>
-                    <select class="form-select" id="bookYear" name="bookYear" required>
+                    <select class="form-select" id="bookYear" name="tahun_terbit" required>
                         <option selected disabled value="">Pilih Tahun</option>
                         <option value="2000">2000</option>
                         <option value="2001">2001</option>
@@ -64,7 +65,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="bookCategory" class="form-label">Kategori</label>
-                    <select class="form-select" id="bookCategory" name="bookCategory" required>
+                    <select class="form-select" id="bookCategory" name="kategori" required>
                         <option selected disabled value="">Pilih Kategori</option>
                         <option value="Agama">Pendidikan Agama</option>
                         <option value="PPKN">PPKN</option>
@@ -90,11 +91,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="bookStock" class="form-label">Stok</label>
-                    <input type="number" class="form-control" id="bookStock" name="bookStock" required>
+                    <input type="number" class="form-control" id="bookStock" name="stok" required>
                 </div>
                 <div class="mb-3">
                     <label for="bookLocation" class="form-label">Lokasi</label>
-                    <select class="form-select" id="bookLocation" name="bookLocation" required>
+                    <select class="form-select" id="bookLocation" name="lokasi" required>
                         <option selected disabled value="">Pilih Lokasi</option>
                         <option value="A1">Rak A1</option>
                         <option value="A2">Rak A2</option>
