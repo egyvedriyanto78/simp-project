@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MemberController;
 
 // Route::get('/', function () {
 //     return view('admin.home');
@@ -41,14 +42,23 @@ Route::get('/management/return/confirmation', [AdminController::class, 'return_c
 // Riwayat Peminjaman Routes
 Route::get('/management/history', [AdminController::class, 'history_management']);
 
-// Member Routes
-Route::get('/member/list', [AdminController::class, 'list_member']);
-Route::get('/member/table', [AdminController::class, 'table_member']);
-Route::get('/member/table/edit', [AdminController::class, 'edit_member']);
-Route::put('/member/table', [AdminController::class, 'update_member']);
-Route::delete('/member/table', [AdminController::class, 'delete_member']);
-Route::get('/member/table/create', [AdminController::class, 'create_member']);
-Route::get('/member/table/store', [AdminController::class, 'store_member']);
+// Member Routes on Admin Controller
+// Route::get('/member/list', [AdminController::class, 'list_member']);
+// Route::get('/member/table', [AdminController::class, 'table_member']);
+// Route::get('/member/table/edit', [AdminController::class, 'edit_member']);
+// Route::put('/member/table', [AdminController::class, 'update_member']);
+// Route::delete('/member/table', [AdminController::class, 'delete_member']);
+// Route::get('/member/table/create', [AdminController::class, 'create_member']);
+// Route::get('/member/table/store', [AdminController::class, 'store_member']);
+
+Route::get('/member/list', [MemberController::class, 'index']);
+Route::get('/member/list/detail/{uid}', [MemberController::class, 'show']);
+Route::get('/member/table', [MemberController::class, 'list']);
+Route::get('/member/table/edit/{uid}', [MemberController::class, 'edit']);
+Route::put('/member/table/{uid}', [MemberController::class, 'update']);
+Route::delete('/member/table/{uid}', [MemberController::class, 'destroy']);
+Route::get('/member/table/create', [MemberController::class, 'create']);
+Route::post('/member/table/store', [MemberController::class, 'store']);
 
 // Lainnya
 Route::get('/information/faq', [AdminController::class, 'faq']);
