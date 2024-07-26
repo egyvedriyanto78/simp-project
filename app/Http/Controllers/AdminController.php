@@ -101,52 +101,52 @@ class AdminController extends Controller
         return view('admin.history', $data);
     }
 
-    public function list_member()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Anggota',
-        ];
-        return view('admin.memberlist', $data);
-    }
+    // public function list_member()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Anggota',
+    //     ];
+    //     return view('admin.memberlist', $data);
+    // }
 
-    public function table_member()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Daftar Anggota',
-        ];
-        return view('admin.memberedit', $data);
-    }
+    // public function table_member()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Daftar Anggota',
+    //     ];
+    //     return view('admin.memberedit', $data);
+    // }
 
-    public function edit_member()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Ubah Data',
-        ];
-        return view('admin.memberupdate', $data);
-    }
+    // public function edit_member()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Ubah Data',
+    //     ];
+    //     return view('admin.memberupdate', $data);
+    // }
 
-    public function update_member()
-    {
-        //
-    }
+    // public function update_member()
+    // {
+    //     //
+    // }
 
-    public function delete_member()
-    {
-        //
-    }
+    // public function delete_member()
+    // {
+    //     //
+    // }
 
-    public function create_member()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Tambah Anggota',
-        ];
-        return view('admin.memberadd', $data);
-    }
+    // public function create_member()
+    // {
+    //     $data = [
+    //         'title' => 'Perpustakaan | Tambah Anggota',
+    //     ];
+    //     return view('admin.memberadd', $data);
+    // }
 
-    public function store_member()
-    {
-        //
-    }
+    // public function store_member()
+    // {
+    //     //
+    // }
 
     public function faq()
     {

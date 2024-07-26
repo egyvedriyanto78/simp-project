@@ -8,8 +8,8 @@
         <h1>Ubah Data Anggota</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Anggota</a></li>
-                <li class="breadcrumb-item active">Ubah Data Anggota</li>
+                <li class="breadcrumb-item">Anggota</li>
+                <li class="breadcrumb-item active">Tabel Anggota</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -24,53 +24,34 @@
                     <th scope="col">UID</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Foto</th>
-                    <th scope="col">Gender</th>
+                    <th scope="col">Jenis Kelamin</th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>24010115</td>
-                    <td>Leonor Van Lora</td>
-                    <td>
-                        <img src="https://img.freepik.com/free-photo/beauty-portrait-female-face_93675-132045.jpg"
-                            class="img-fluid rounded-start table-image" alt="...">
-                    </td>
-                    <td>Perempuan</td>
-                    <td>
-                        <a href="#"><i class="bi bi-pencil"></i></a>
-                        <a href="#" style="color: red; margin-left: 1rem;"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>22020107</td>
-                    <td>Lamine Yamal</td>
-                    <td>
-                        <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?cs=srgb&dl=pexels-creationhill-1681010.jpg&fm=jpg"
-                            class="img-fluid rounded-start table-image" alt="...">
-                    </td>
-                    <td>Laki-laki</td>
-                    <td>
-                        <a href="#"><i class="bi bi-pencil"></i></a>
-                        <a href="#" style="color: red; margin-left: 1rem;"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>23030221</td>
-                    <td>Nathan Visca</td>
-                    <td>
-                        <img src="https://i.mdel.net/i/db/2016/4/510508/510508-800w.jpg"
-                            class="img-fluid rounded-start table-image" alt="...">
-                    </td>
-                    <td>Perempuan</td>
-                    <td>
-                        <a href="#"><i class="bi bi-pencil"></i></a>
-                        <a href="#" style="color: red; margin-left: 1rem;"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
+                @foreach ($members as $index => $member)
+                    <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $member->uid }}</td>
+                        <td>{{ $member->nama }}</td>
+                        <td>
+                            <img src="{{ asset($member->foto) }}" class="img-fluid rounded-start table-image"
+                                alt="Foto {{ $member->nama }}">
+                        </td>
+                        <td>{{ ucfirst($member->jenis_kelamin) }}</td>
+                        <td>
+                            <a href="{{ url('/member/table/edit/' . $member->uid) }}"><i class="bi bi-pencil"></i></a>
+                            <form action="{{ url('/member/table/' . $member->uid) }}" method="POST" style="display:inline;"
+                                onsubmit="return confirmDelete()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="background:none; border:none; color:red;">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
@@ -78,4 +59,12 @@
 
 </main><!-- End #main -->
 
+@endsection
+
+@section('scripts')
+<script>
+    function confirmDelete() {
+        return confirm("Apakah yakin ingin menghapus data ini?");
+    }
+</script>
 @endsection
