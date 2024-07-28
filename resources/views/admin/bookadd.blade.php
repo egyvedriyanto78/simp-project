@@ -67,25 +67,25 @@
                     <label for="bookCategory" class="form-label">Kategori</label>
                     <select class="form-select" id="bookCategory" name="kategori" required>
                         <option selected disabled value="">Pilih Kategori</option>
-                        <option value="Agama">Pendidikan Agama</option>
+                        <option value="Pendidikan_Agama">Pendidikan Agama</option>
                         <option value="PPKN">PPKN</option>
                         <option value="Fisika">Fisika</option>
                         <option value="Kimia">Kimia</option>
                         <option value="Matematika">Matematika</option>
                         <option value="Biologi">Biologi</option>
                         <option value="Sejarah">Sejarah</option>
-                        <option value="Inggris">Bahasa Inggris</option>
-                        <option value="Indonesia">Bahasa Indonesia</option>
+                        <option value="Bahasa_Inggris">Bahasa Inggris</option>
+                        <option value="Bahasa_Indonesia">Bahasa Indonesia</option>
                         <option value="Comedy">Comedy</option>
                         <option value="Fantasy">Fantasy</option>
                         <option value="Horror">Horror</option>
                         <option value="Mystery">Mystery</option>
                         <option value="Psychology">Psychology</option>
                         <option value="Romance">Romance</option>
-                        <option value="Scifi">Sci-Fi</option>
-                        <option value="Self">Pengembangan Diri</option>
+                        <option value="Sci-fi">Sci-Fi</option>
+                        <option value="Pengembangan_Diri">Pengembangan Diri</option>
                         <option value="Filsafat">Filsafat</option>
-                        <option value="Biografi">Autobiografi & Biografi</option>
+                        <option value="Autobiografi_&_Biografi">Autobiografi & Biografi</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>

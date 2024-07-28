@@ -19,7 +19,8 @@
 
         <h3>Ubah Data Buku</h3>
         <div class="container mb-3">
-            <form id="bookForm" action="{{ url('/book/table/' . $book->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="bookForm" action="{{ url('/book/table/' . $book->id) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -45,7 +46,8 @@
                     <label for="bookCategory" class="form-label">Kategori</label>
                     <select class="form-select" id="bookCategory" name="kategori" required>
                         <option selected disabled value="">Pilih Kategori</option>
-                        <option value="Agama" {{ $book->kategori == 'Agama' ? 'selected' : '' }}>Pendidikan Agama</option>
+                        <option value="Pendidikan_Agama" {{ $book->kategori == 'Pendidikan_Agama' ? 'selected' : '' }}>
+                            Pendidikan Agama</option>
                         <option value="PPKN" {{ $book->kategori == 'PPKN' ? 'selected' : '' }}>PPKN</option>
                         <option value="Fisika" {{ $book->kategori == 'Fisika' ? 'selected' : '' }}>Fisika</option>
                         <option value="Kimia" {{ $book->kategori == 'Kimia' ? 'selected' : '' }}>Kimia</option>
@@ -53,9 +55,11 @@
                         </option>
                         <option value="Biologi" {{ $book->kategori == 'Biologi' ? 'selected' : '' }}>Biologi</option>
                         <option value="Sejarah" {{ $book->kategori == 'Sejarah' ? 'selected' : '' }}>Sejarah</option>
-                        <option value="Inggris" {{ $book->kategori == 'Inggris' ? 'selected' : '' }}>Bahasa Inggris
+                        <option value="Bahasa_Inggris" {{ $book->kategori == 'Bahasa_Inggris' ? 'selected' : '' }}>Bahasa
+                            Inggris
                         </option>
-                        <option value="Indonesia" {{ $book->kategori == 'Indonesia' ? 'selected' : '' }}>Bahasa Indonesia
+                        <option value="Bahasa_Indonesia" {{ $book->kategori == 'Bahasa_Indonesia' ? 'selected' : '' }}>
+                            Bahasa Indonesia
                         </option>
                         <option value="Comedy" {{ $book->kategori == 'Comedy' ? 'selected' : '' }}>Comedy</option>
                         <option value="Fantasy" {{ $book->kategori == 'Fantasy' ? 'selected' : '' }}>Fantasy</option>
@@ -64,10 +68,11 @@
                         <option value="Psychology" {{ $book->kategori == 'Psychology' ? 'selected' : '' }}>Psychology
                         </option>
                         <option value="Romance" {{ $book->kategori == 'Romance' ? 'selected' : '' }}>Romance</option>
-                        <option value="Scifi" {{ $book->kategori == 'Scifi' ? 'selected' : '' }}>Sci-Fi</option>
-                        <option value="Self" {{ $book->kategori == 'Self' ? 'selected' : '' }}>Pengembangan Diri</option>
+                        <option value="Sci-fi" {{ $book->kategori == 'Sci-fi' ? 'selected' : '' }}>Sci-Fi</option>
+                        <option value="Pengembangan_Diri" {{ $book->kategori == 'Pengembangan_Diri' ? 'selected' : '' }}>
+                            Pengembangan Diri</option>
                         <option value="Filsafat" {{ $book->kategori == 'Filsafat' ? 'selected' : '' }}>Filsafat</option>
-                        <option value="Biografi" {{ $book->kategori == 'Biografi' ? 'selected' : '' }}>Autobiografi &
+                        <option value="Autobiografi_&_Biografi" {{ $book->kategori == 'Autobiografi_&_Biografi' ? 'selected' : '' }}>Autobiografi &
                             Biografi</option>
                         <option value="Lainnya" {{ $book->kategori == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                     </select>
