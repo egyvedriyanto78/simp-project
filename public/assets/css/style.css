@@ -168,7 +168,7 @@ html {
     margin: auto;
     border: 2px solid #000;
     padding: 10px;
-    background-color: #fff;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
 }
 
 .library-card-title {
@@ -196,6 +196,7 @@ html {
         padding: 10px;
         width: 300px;
         margin: auto;
+        background: linear-gradient(135deg, #ff4e50, #f9d423);
     }
 
     .library-card-img {

@@ -23,7 +23,7 @@
             <div class="row">
                 <!-- Book Cover -->
                 <div class="col-lg-4 text-center mb-3">
-                    <img src="https://ebooks.gramedia.com/ebook-covers/43467/image_highres/ID_PAIBPX2018MTH07.jpg"
+                    <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/puhsepuh.jpg') }}"
                         class="img-fluid rounded shadow book-cover" alt="Sampul Buku">
                 </div>
                 <!-- Book Details -->
@@ -31,27 +31,27 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Judul:</strong>
-                            <span>Pendidikan Agama Islam Kelas X</span>
+                            <span>{{ $book->judul }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>ID:</strong>
-                            <span>PAG001</span>
+                            <span>{{ $book->id }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Tahun Terbit:</strong>
-                            <span>2023</span>
+                            <span>{{ $book->tahun_terbit }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Kategori:</strong>
-                            <span>Pendidikan Agama</span>
+                            <span>{{ $book->kategori }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Stok:</strong>
-                            <span>400</span>
+                            <span>{{ $book->stok }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Lokasi (Rak):</strong>
-                            <span>D-1</span>
+                            <span>{{ $book->lokasi }}</span>
                         </li>
 
                         <div class="row mt-4">
