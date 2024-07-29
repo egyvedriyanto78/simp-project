@@ -8,7 +8,7 @@
         <h1>Peminjaman Buku</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Manajemen</a></li>
+                <li class="breadcrumb-item">Manajemen</li>
                 <li class="breadcrumb-item active">Pinjam Buku</li>
             </ol>
         </nav>
@@ -18,11 +18,8 @@
 
         <h3>Formulir Peminjaman Buku</h3>
         <div class="container mb-3">
-            <form id="borrowForm">
-                <div class="mb-3">
-                    <label for="borrowCode" class="form-label">Kode Peminjaman</label>
-                    <input type="text" class="form-control" id="borrowCode" name="borrowCode" required>
-                </div>
+            <form id="borrowForm" method="POST" action="{{ route('borrow.store') }}">
+                @csrf
                 <div class="mb-3">
                     <label for="bookId" class="form-label">ID Buku</label>
                     <input type="text" class="form-control" id="bookId" name="bookId" required>
@@ -36,8 +33,12 @@
                     <input type="date" class="form-control" id="borrowDate" name="borrowDate" required>
                 </div>
                 <div class="mb-3">
+                    <label for="quantity" class="form-label">Jumlah Buku</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" required>
+                </div>
+                <div class="mb-3">
                     <label for="returnDate" class="form-label">Tanggal Pengembalian</label>
-                    <input type="date" class="form-control" id="returnDate" name="returnDate" required readonly>
+                    <input type="date" class="form-control" id="returnDate" name="returnDate" readonly>
                 </div>
                 <button type="submit" class="btn btn-primary">Konfirmasi</button>
             </form>

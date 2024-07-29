@@ -8,7 +8,7 @@
         <h1>Pengembalian Buku</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Manajemen</a></li>
+                <li class="breadcrumb-item">Manajemen</li>
                 <li class="breadcrumb-item active">Pengembalian Buku</li>
             </ol>
         </nav>
@@ -24,6 +24,7 @@
                     <th scope="col">Kode</th>
                     <th scope="col">ID Buku</th>
                     <th scope="col">Judul</th>
+                    <th scope="col">Jumlah</th>
                     <th scope="col">UID Anggota</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Tanggal Peminjaman</th>
@@ -31,30 +32,22 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>240718001</td>
-                    <td>PAG001</td>
-                    <td>Pendidikan Agama Islam Kelas X</td>
-                    <td>24010115</td>
-                    <td>Leonor Van Lora</td>
-                    <td>2024-07-18</td>
-                    <td>
-                        <a href="{{ url('/management/return/confirmation') }}" class="btn btn-info">Kembalikan</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>240718002</td>
-                    <td>FIS003</td>
-                    <td>Fisika Kelas XII</td>
-                    <td>22020107</td>
-                    <td>Lamine Yamal</td>
-                    <td>2024-07-18</td>
-                    <td>
-                        <a href="{{ url('/management/return/confirmation') }}" class="btn btn-info">Kembalikan</a>
-                    </td>
-                </tr>
+                @foreach($borrowings as $borrowing)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $borrowing->borrowCode }}</td>
+                        <td>{{ $borrowing->book->id }}</td>
+                        <td>{{ $borrowing->book->judul }}</td>
+                        <td>{{ $borrowing->quantity }}</td>
+                        <td>{{ $borrowing->member->uid }}</td>
+                        <td>{{ $borrowing->member->nama }}</td>
+                        <td>{{ $borrowing->borrowDate }}</td>
+                        <td>
+                            <a href="{{ route('return.confirmation', $borrowing->borrowCode) }}"
+                                class="btn btn-info">Kembalikan</a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 

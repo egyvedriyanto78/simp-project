@@ -14,138 +14,36 @@ class AdminController extends Controller
         return view('admin.home', $data);
     }
 
-    // public function list_book()
+    // public function borrow_management()
     // {
     //     $data = [
-    //         'title' => 'Perpustakaan | Katalog',
+    //         'title' => 'Perpustakaan | Peminjaman',
     //     ];
-    //     return view('admin.booklist', $data);
+    //     return view('admin.manborrow', $data);
     // }
 
-    // public function detail_book()
+    // public function return_management()
     // {
     //     $data = [
-    //         'title' => 'Perpustakaan | Detail Buku',
+    //         'title' => 'Perpustakaan | Pengembalian',
     //     ];
-    //     return view('admin.detail', $data);
+    //     return view('admin.manreturn', $data);
     // }
 
-    // public function table_book()
+    // public function return_confirm()
     // {
     //     $data = [
-    //         'title' => 'Perpustakaan | Daftar Buku',
+    //         'title' => 'Perpustakaan | Konfirmasi Pengembalian',
     //     ];
-    //     return view('admin.bookedit', $data);
+    //     return view('admin.manretcon', $data);
     // }
 
-    // public function edit_book()
+    // public function history_management()
     // {
     //     $data = [
-    //         'title' => 'Perpustakaan | Ubah Data',
+    //         'title' => 'Perpustakaan | Riwayat Peminjaman',
     //     ];
-    //     return view('admin.bookupdate', $data);
-    // }
-
-    // public function update_book()
-    // {
-    //     //
-    // }
-
-    // public function delete_book()
-    // {
-    //     //
-    // }
-
-    // public function create_book()
-    // {
-    //     $data = [
-    //         'title' => 'Perpustakaan | Tambah Buku',
-    //     ];
-    //     return view('admin.bookadd', $data);
-    // }
-
-    // public function store_book()
-    // {
-    //     //
-    // }
-
-    public function borrow_management()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Peminjaman',
-        ];
-        return view('admin.manborrow', $data);
-    }
-
-    public function return_management()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Pengembalian',
-        ];
-        return view('admin.manreturn', $data);
-    }
-
-    public function return_confirm()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Konfirmasi Pengembalian',
-        ];
-        return view('admin.manretcon', $data);
-    }
-
-    public function history_management()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Riwayat Peminjaman',
-        ];
-        return view('admin.history', $data);
-    }
-
-    // public function list_member()
-    // {
-    //     $data = [
-    //         'title' => 'Perpustakaan | Anggota',
-    //     ];
-    //     return view('admin.memberlist', $data);
-    // }
-
-    // public function table_member()
-    // {
-    //     $data = [
-    //         'title' => 'Perpustakaan | Daftar Anggota',
-    //     ];
-    //     return view('admin.memberedit', $data);
-    // }
-
-    // public function edit_member()
-    // {
-    //     $data = [
-    //         'title' => 'Perpustakaan | Ubah Data',
-    //     ];
-    //     return view('admin.memberupdate', $data);
-    // }
-
-    // public function update_member()
-    // {
-    //     //
-    // }
-
-    // public function delete_member()
-    // {
-    //     //
-    // }
-
-    // public function create_member()
-    // {
-    //     $data = [
-    //         'title' => 'Perpustakaan | Tambah Anggota',
-    //     ];
-    //     return view('admin.memberadd', $data);
-    // }
-
-    // public function store_member()
-    // {
-    //     //
+    //     return view('admin.history', $data);
     // }
 
     public function faq()
