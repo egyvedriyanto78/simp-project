@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\BorrowController;
 
 // Route::get('/', function () {
 //     return view('admin.home');
@@ -33,14 +34,27 @@ Route::get('/book/table/create', [BookController::class, 'create']);
 Route::post('/book/table/store', [BookController::class, 'store']);
 
 // Manajemen Peminjaman Routes
-Route::get('/management/borrow', [AdminController::class, 'borrow_management']);
+// Route::get('/management/borrow', [AdminController::class, 'borrow_management']);
 
 // Manajemen Pengembalian Routes
-Route::get('/management/return', [AdminController::class, 'return_management']);
-Route::get('/management/return/confirmation', [AdminController::class, 'return_confirm']);
+// Route::get('/management/return', [AdminController::class, 'return_management']);
+// Route::get('/management/return/confirmation', [AdminController::class, 'return_confirm']);
 
 // Riwayat Peminjaman Routes
-Route::get('/management/history', [AdminController::class, 'history_management']);
+// Route::get('/management/history', [AdminController::class, 'history_management']);
+
+// Manajemen Peminjaman Routes
+Route::get('/management/borrow', [BorrowController::class, 'borrow_management'])->name('borrow_management');
+Route::post('/management/borrow', [BorrowController::class, 'borrow'])->name('borrow.store');
+
+// Manajemen Pengembalian Routes
+Route::get('/management/return', [BorrowController::class, 'return_management'])->name('management.return');
+Route::get('/management/return/confirmation/{borrowCode}', [BorrowController::class, 'return_confirm'])->name('return.confirmation');
+Route::post('/management/return/confirmation', [BorrowController::class, 'confirm_return'])->name('return.confirm');
+
+// Riwayat Peminjaman Routes
+Route::get('/management/history', [BorrowController::class, 'history_management'])->name('management.history');
+Route::post('/borrowings/update-status/{borrowCode}', [BorrowController::class, 'updateStatus'])->name('management.updateStatus');
 
 // Member Routes on Admin Controller
 // Route::get('/member/list', [AdminController::class, 'list_member']);
