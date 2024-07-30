@@ -48,11 +48,16 @@ class BorrowController extends Controller
 
     public function return_management()
     {
-        $borrowings = Borrowing::with('book', 'member')->whereNull('returnDate')->get();
+        $borrowings = Borrowing::with('book', 'member')
+            ->whereNull('returnDate')
+            ->orderBy('borrowDate', 'asc')
+            ->get();
+
         $data = [
             'title' => 'Perpustakaan | Pengembalian',
             'borrowings' => $borrowings,
         ];
+
         return view('admin.manreturn', $data);
     }
 
@@ -113,7 +118,9 @@ class BorrowController extends Controller
 
     public function history_management()
     {
-        $borrowings = Borrowing::with('book', 'member')->get();
+        $borrowings = Borrowing::with('book', 'member')
+            ->orderBy('borrowDate', 'desc')
+            ->get();
 
         $data = [
             'title' => 'Perpustakaan | Riwayat Peminjaman',

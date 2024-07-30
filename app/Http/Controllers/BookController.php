@@ -90,6 +90,12 @@ class BookController extends Controller
         $book = Book::find($id);
 
         if ($request->hasFile('sampul')) {
+            // Hapus sampul lama jika ada
+            if ($book->sampul && file_exists(public_path($book->sampul))) {
+                unlink(public_path($book->sampul));
+            }
+
+            // Simpan sampul baru
             $imageName = time() . '.' . $request->sampul->extension();
             $request->sampul->move(public_path('assets/img/book'), $imageName);
             $validatedData['sampul'] = 'assets/img/book/' . $imageName;
