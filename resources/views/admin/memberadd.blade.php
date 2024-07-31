@@ -8,7 +8,7 @@
         <h1>Tambah Anggota</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Anggota</a></li>
+                <li class="breadcrumb-item">Anggota</li>
                 <li class="breadcrumb-item active">Tambah Anggota</li>
             </ol>
         </nav>
@@ -23,10 +23,6 @@
                 <div class="mb-3">
                     <label for="angkatan" class="form-label">Angkatan</label>
                     <input type="number" class="form-control" id="angkatan" name="angkatan" required>
-                </div>
-                <div class="mb-3">
-                    <label for="jurusan" class="form-label">Jurusan</label>
-                    <input type="number" class="form-control" id="jurusan" name="jurusan" required>
                 </div>
                 <div class="mb-3">
                     <label for="kelas" class="form-label">Kelas</label>
@@ -54,7 +50,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Konfirmasi</button>
             </form>
-
         </div>
 
     </section>

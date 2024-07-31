@@ -42,6 +42,35 @@ class AdminController extends Controller
             ->limit(5)
             ->get();
 
+        // Recently Added Books
+        $recentBooks = DB::table('books')
+            ->select('id', 'judul', 'kategori')
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Recent Member Activity
+        $recentActivities = DB::table('borrowings')
+            ->join('books', 'borrowings.bookId', '=', 'books.id')
+            ->join('members', 'borrowings.memberUId', '=', 'members.uid')
+            ->select('books.judul', 'members.nama', 'borrowings.borrowDate')
+            ->orderBy('borrowings.borrowDate', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Top Anggota yang Paling Aktif
+        $topActiveMembers = DB::table('borrowings')
+            ->join('members', 'borrowings.memberUId', '=', 'members.uid')
+            ->select('members.uid', 'members.nama', DB::raw('count(borrowings.memberUId) as borrow_count'))
+            ->groupBy('borrowings.memberUId', 'members.uid', 'members.nama')
+            ->orderByDesc('borrow_count')
+            ->limit(5)
+            ->get()
+            ->map(function ($member) {
+                $member->displayName = $member->nama . " (" . $member->uid . ")";
+                return $member;
+            });
+
         $data = [
             'title' => 'Perpustakaan | Dasbor',
             'totalBooks' => $totalBooks,
@@ -52,6 +81,9 @@ class AdminController extends Controller
             'booksByCategory' => $booksByCategory,
             'memberGenderCounts' => $memberGenderCounts,
             'topBorrowedBooks' => $topBorrowedBooks,
+            'recentBooks' => $recentBooks,
+            'recentActivities' => $recentActivities,
+            'topActiveMembers' => $topActiveMembers,
         ];
 
         return view('admin.home', $data);
@@ -79,6 +111,22 @@ class AdminController extends Controller
             'title' => 'Perpustakaan | Profil',
         ];
         return view('admin.profile', $data);
+    }
+
+    public function login()
+    {
+        $data = [
+            'title' => 'Perpustakaan | Login',
+        ];
+        return view('admin.auth.login', $data);
+    }
+
+    public function register()
+    {
+        $data = [
+            'title' => 'Perpustakaan | Register',
+        ];
+        return view('admin.auth.register', $data);
     }
 
 }

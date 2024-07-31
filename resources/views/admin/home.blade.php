@@ -111,6 +111,47 @@
                         </div>
                     </div><!-- End Borrowings Chart -->
 
+                    <!-- Top Active Members Chart -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Top Anggota yang Paling Aktif</h5>
+                            <div id="topActiveMembersChart" class="w-100"></div> <!-- Menambahkan kelas w-100 -->
+
+                            <script src="https://cdn.jsdelivr.net/npm/chroma-js"></script>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    const memberNames = @json($topActiveMembers->pluck('displayName'));
+                                    const borrowCounts = @json($topActiveMembers->pluck('borrow_count'));
+                                    const numMembers = memberNames.length;
+                                    const colors = chroma.scale('Set1').mode('lch').colors(numMembers);
+
+                                    new ApexCharts(document.querySelector("#topActiveMembersChart"), {
+                                        series: [{
+                                            name: 'Aktivitas',
+                                            data: borrowCounts
+                                        }],
+                                        chart: {
+                                            type: 'bar',
+                                            height: 350,
+                                            width: '100%', // Tambahkan width 100%
+                                            horizontal: true
+                                        },
+                                        xaxis: {
+                                            categories: memberNames
+                                        },
+                                        plotOptions: {
+                                            bar: {
+                                                horizontal: true,
+                                                distributed: true
+                                            }
+                                        },
+                                        colors: colors
+                                    }).render();
+                                });
+                            </script>
+                        </div>
+                    </div><!-- End Top Active Members Chart -->
+
                     <!-- Books by Category Chart -->
                     <div class="card">
                         <div class="card-body">
@@ -198,6 +239,55 @@
                         </div>
                     </div><!-- End Member Gender Statistics Pie Chart -->
 
+                    <!-- Recently Added Books -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Buku yang Baru Ditambahkan</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recentBooks as $book)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $book->judul }}</td>
+                                            <td>{{ $book->kategori }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- End Recently Added Books -->
+
+                    <!-- Recent Member Activity -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Aktivitas Terbaru Anggota</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Judul Buku</th>
+                                        <th scope="col">Peminjam</th>
+                                        <th scope="col">Tanggal Pinjam</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recentActivities as $activity)
+                                        <tr>
+                                            <td>{{ $activity->judul }}</td>
+                                            <td>{{ $activity->nama }}</td>
+                                            <td>{{ $activity->borrowDate }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- End Recent Member Activity -->
                 </div><!-- End Right Column -->
 
             </div><!-- End row -->

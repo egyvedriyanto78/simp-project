@@ -48,3 +48,7 @@ Route::get('/information/contact', [AdminController::class, 'contact']);
 
 // Profile
 Route::get('/profile', [AdminController::class, 'profile']);
+
+// Auth
+Route::get('/', [AdminController::class, 'login']);
+Route::get('/register', [AdminController::class, 'register']);
