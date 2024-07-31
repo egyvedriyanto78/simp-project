@@ -42,7 +42,6 @@ class MemberController extends Controller
     {
         $validatedData = $request->validate([
             'angkatan' => 'required|integer',
-            'jurusan' => 'required|integer',
             'kelas' => 'required|integer',
             'nomor_absen' => 'required|integer',
             'nama' => 'required|string|max:255',
@@ -50,22 +49,14 @@ class MemberController extends Controller
             'jenis_kelamin' => 'required|string',
         ]);
 
-        // Generate UID
+        // Generate UID (6 digits)
         $angkatan = $validatedData['angkatan'];
-        $jurusan = $validatedData['jurusan'];
         $kelas = $validatedData['kelas'];
         $nomor_absen = $validatedData['nomor_absen'];
 
-        $uid = sprintf('%02d%02d%02d%02d', $angkatan, $jurusan, $kelas, $nomor_absen);
+        $uid = sprintf('%02d%02d%02d', $angkatan, $kelas, $nomor_absen);
 
         // Handle file upload
-        // if ($request->hasFile('foto')) {
-        //     $imageName = time() . '.' . $request->foto->extension();
-        //     $request->foto->move('assets/img/members', $imageName);
-        //     $foto = 'assets/img/members/' . $imageName;
-        // }
-
-        // Handle file upload 2nd
         if ($request->hasFile('foto')) {
             $imageName = time() . '.' . $request->foto->extension();
             $request->foto->move(public_path('assets/img/members'), $imageName);
