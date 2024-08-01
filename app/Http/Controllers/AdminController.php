@@ -105,20 +105,12 @@ class AdminController extends Controller
         return view('admin.contact', $data);
     }
 
-    public function profile()
-    {
-        $data = [
-            'title' => 'Perpustakaan | Profil',
-        ];
-        return view('admin.profile', $data);
-    }
-
     public function login()
     {
         $data = [
             'title' => 'Perpustakaan | Login',
         ];
-        return view('admin.auth.login', $data);
+        return view('admin.authdesign.login', $data);
     }
 
     public function register()
@@ -126,7 +118,7 @@ class AdminController extends Controller
         $data = [
             'title' => 'Perpustakaan | Register',
         ];
-        return view('admin.auth.register', $data);
+        return view('admin.authdesign.register', $data);
     }
 
 }
