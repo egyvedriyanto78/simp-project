@@ -23,7 +23,7 @@
                         <img src="{{ asset('assets/img/profile-img.jpg') }}"
                             class="rounded-circle img-thumbnail custom-profile-img" alt="Profile Image" width="150"
                             height="150">
-                        <h3 class="mt-3">Egy Vedriyanto</h3>
+                        <h3 class="mt-3">{{ Auth::user()->name }}</h3>
                         <p>Administrator</p>
                     </div>
                 </div>
@@ -47,6 +47,10 @@
                                     href="#change-password" role="tab" aria-controls="change-password"
                                     aria-selected="false">Ubah Kata Sandi</a>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="delete-account-tab" data-bs-toggle="tab" href="#delete-account"
+                                    role="tab" aria-controls="delete-account" aria-selected="false">Hapus Akun</a>
+                            </li>
                         </ul>
                         <div class="tab-content pt-3" id="profileTabContent">
                             <!-- Overview Tab -->
@@ -60,47 +64,17 @@
                             <!-- Edit Profile Tab -->
                             <div class="tab-pane fade" id="edit-profile" role="tabpanel"
                                 aria-labelledby="edit-profile-tab">
-                                <h4>Ubah Profil</h4>
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nama</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            value="Egy Vedriyanto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="job" class="form-label">Jabatan</label>
-                                        <input type="text" class="form-control" id="job" name="job"
-                                            value="Administrator">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="pic" class="form-label">Foto</label>
-                                        <input class="form-control" type="file" id="pic" name="pic">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                </form>
+                                @include('profile.partials.update-profile-information-form')
                             </div>
                             <!-- Change Password Tab -->
                             <div class="tab-pane fade" id="change-password" role="tabpanel"
                                 aria-labelledby="change-password-tab">
-                                <h4>Ubah Kata Sandi</h4>
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="current-password" class="form-label">Kata Sandi Saat Ini</label>
-                                        <input type="password" class="form-control" id="current-password"
-                                            name="current-password">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="new-password" class="form-label">Kata Sandi Baru</label>
-                                        <input type="password" class="form-control" id="new-password"
-                                            name="new-password">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="confirm-password" class="form-label">Konfirmasi Kata Sandi</label>
-                                        <input type="password" class="form-control" id="confirm-password"
-                                            name="confirm-password">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Ubah Kata Sandi</button>
-                                </form>
+                                @include('profile.partials.update-password-form')
+                            </div>
+                            <!-- Delete Account Tab -->
+                            <div class="tab-pane fade" id="delete-account" role="tabpanel"
+                                aria-labelledby="delete-account-tab">
+                                @include('profile.partials.delete-user-form')
                             </div>
                         </div>
                     </div>

@@ -47,11 +47,13 @@
         </div><!-- End Logo -->
 
         <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Cari" title="Enter search keyword">
+            <form id="searchForm" class="search-form d-flex align-items-center">
+                <input type="text" name="query" id="searchInput" placeholder="Cari" title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
         </div><!-- End Search Bar -->
+
+        <div id="searchResults"></div>
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -66,12 +68,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Egy Vedriyanto</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Egy Vedriyanto</h6>
+                            <h6>{{ Auth::user()->name }}</h6>
                             <span>Administrator</span>
                         </li>
                         <li>
@@ -89,10 +91,13 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Keluar</span>
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}" x-data @submit.prevent="confirmLogout">
+                                @csrf
+                                <button type="submit" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Keluar</span>
+                                </button>
+                            </form>
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
@@ -255,6 +260,48 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <script>
+        function confirmLogout(event) {
+            if (confirm("Apakah yakin ingin logout?")) {
+                event.target.submit();
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Mencegah form untuk submit secara default
+
+            let query = document.getElementById('searchInput').value;
+
+            // Kirim permintaan AJAX ke server
+            fetch('{{ route('search') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ query: query })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let resultsDiv = document.getElementById('searchResults');
+                    resultsDiv.innerHTML = ''; // Kosongkan hasil sebelumnya
+
+                    if (data.results.length > 0) {
+                        data.results.forEach(item => {
+                            let resultItem = document.createElement('div');
+                            resultItem.textContent = item.judul + ' - ' + item.kategori; // Sesuaikan dengan atribut yang ada
+                            resultsDiv.appendChild(resultItem);
+                        });
+                    } else {
+                        resultsDiv.textContent = 'Tidak ada hasil yang ditemukan.';
+                    }
+                });
+        });
+    </script>
 
     @yield('scripts')
 

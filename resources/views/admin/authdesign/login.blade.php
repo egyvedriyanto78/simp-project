@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a
-                                                    href="{{ url('/register') }}">Create an account</a></p>
+                                                    href="{{ url('/test/register') }}">Create an account</a></p>
                                         </div>
                                     </form>
 
