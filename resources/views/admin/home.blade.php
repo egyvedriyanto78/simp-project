@@ -218,6 +218,31 @@
 
                 <!-- Right Column -->
                 <div class="col-lg-4">
+                    <!-- Real-Time Clock -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Waktu Saat Ini (Lampung)</h5>
+                            <div id="clock" style="font-size: 24px; font-weight: bold;"></div>
+                        </div>
+                        <script>
+                            async function fetchTime() {
+                                const response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Jakarta');
+                                const data = await response.json();
+                                const dateTime = new Date(data.datetime);
+                                const hours = dateTime.getHours().toString().padStart(2, '0');
+                                const minutes = dateTime.getMinutes().toString().padStart(2, '0');
+                                const seconds = dateTime.getSeconds().toString().padStart(2, '0');
+                                document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+                            }
+
+                            // Fetch time initially and then update every second
+                            document.addEventListener("DOMContentLoaded", () => {
+                                fetchTime();
+                                setInterval(fetchTime, 1000);
+                            });
+                        </script>
+                    </div>
+
                     <!-- Member Gender Statistics Pie Chart -->
                     <div class="card">
                         <div class="card-body">
