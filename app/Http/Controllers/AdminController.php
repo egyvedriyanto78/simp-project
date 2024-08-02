@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -105,6 +106,7 @@ class AdminController extends Controller
         return view('admin.contact', $data);
     }
 
+    // Dibawah ini hanya desain UI bukan fungsi utama auth
     public function login()
     {
         $data = [
