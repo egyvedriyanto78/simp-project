@@ -39,7 +39,7 @@ class BookController extends Controller
         $validatedData = $request->validate([
             'id' => 'required|string|unique:books',
             'judul' => 'required|string|max:255',
-            'sampul' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // sampul tidak wajib, tapi jika diisi harus berupa gambar
+            'sampul' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tahun_terbit' => 'required|integer',
             'kategori' => 'required|string',
             'stok' => 'required|integer',
@@ -48,8 +48,9 @@ class BookController extends Controller
 
         if ($request->hasFile('sampul')) {
             $imageName = time() . '.' . $request->sampul->extension();
-            $request->sampul->move(public_path('assets/img/book'), $imageName);
-            $validatedData['sampul'] = 'assets/img/book/' . $imageName;
+            //$request->sampul->move(public_path('assets/img/book'), $imageName);
+            $request->file('sampul')->storeAs('public/book', $imageName);
+            $validatedData['sampul'] = 'storage/book/' . $imageName;
         }
 
         $book = new Book($validatedData);
@@ -80,7 +81,7 @@ class BookController extends Controller
     {
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
-            'sampul' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // sampul tidak wajib, tapi jika diisi harus berupa gambar
+            'sampul' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tahun_terbit' => 'required|integer',
             'kategori' => 'required|string',
             'stok' => 'required|integer',
@@ -91,14 +92,15 @@ class BookController extends Controller
 
         if ($request->hasFile('sampul')) {
             // Hapus sampul lama jika ada
-            if ($book->sampul && file_exists(public_path($book->sampul))) {
-                unlink(public_path($book->sampul));
+            if ($book->sampul && file_exists(storage_path('app/public/' . str_replace('storage/', '', $book->sampul)))) {
+                unlink(storage_path('app/public/' . str_replace('storage/', '', $book->sampul)));
             }
 
             // Simpan sampul baru
             $imageName = time() . '.' . $request->sampul->extension();
-            $request->sampul->move(public_path('assets/img/book'), $imageName);
-            $validatedData['sampul'] = 'assets/img/book/' . $imageName;
+            //$request->sampul->move(public_path('assets/img/book'), $imageName);
+            $request->file('sampul')->storeAs('public/book', $imageName);
+            $validatedData['sampul'] = 'storage/book/' . $imageName;
         } else {
             unset($validatedData['sampul']);
         }
@@ -113,9 +115,16 @@ class BookController extends Controller
         $book = Book::find($id);
 
         // Hapus sampul jika ada
-        if ($book->sampul && file_exists(public_path($book->sampul))) {
-            unlink(public_path($book->sampul));
+        if ($book->sampul && file_exists(storage_path('app/public/' . str_replace('storage/', '', $book->sampul)))) {
+            unlink(storage_path('app/public/' . str_replace('storage/', '', $book->sampul)));
         }
+
+        //$book->delete();
+
+        // Hapus sampul dari public path jika ada
+        //if ($book->sampul && file_exists(public_path($book->sampul))) {
+        //    unlink(public_path($book->sampul));
+        //}
 
         $book->delete();
 

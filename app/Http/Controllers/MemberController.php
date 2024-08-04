@@ -45,7 +45,7 @@ class MemberController extends Controller
             'kelas' => 'required|integer',
             'nomor_absen' => 'required|integer',
             'nama' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // foto wajib diisi
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'jenis_kelamin' => 'required|string',
         ]);
 
@@ -59,8 +59,9 @@ class MemberController extends Controller
         // Handle file upload
         if ($request->hasFile('foto')) {
             $imageName = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('assets/img/members'), $imageName);
-            $foto = 'assets/img/members/' . $imageName;
+            //$request->foto->move(public_path('assets/img/members'), $imageName);
+            $request->file('foto')->storeAs('public/members', $imageName);
+            $foto = 'storage/members/' . $imageName;
         }
 
         $member = new Member([
@@ -108,14 +109,15 @@ class MemberController extends Controller
 
         if ($request->hasFile('foto')) {
             // Hapus foto lama jika ada
-            if ($member->foto && file_exists(public_path($member->foto))) {
-                unlink(public_path($member->foto));
+            if ($member->foto && file_exists(storage_path('app/public/' . str_replace('storage/', '', $member->foto)))) {
+                unlink(storage_path('app/public/' . str_replace('storage/', '', $member->foto)));
             }
 
             // Simpan foto baru
             $imageName = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('assets/img/members'), $imageName);
-            $validatedData['foto'] = 'assets/img/members/' . $imageName;
+            //$request->foto->move(public_path('assets/img/members'), $imageName);
+            $request->file('foto')->storeAs('public/members', $imageName);
+            $validatedData['foto'] = 'storage/members/' . $imageName;
         } else {
             unset($validatedData['foto']);
         }
@@ -127,17 +129,19 @@ class MemberController extends Controller
 
     public function destroy($uid)
     {
-        // $member = Member::where('uid', $uid)->firstOrFail();
         $member = Member::find($uid);
 
-        // if ($member->foto && Storage::exists($member->foto)) {
-        //     Storage::delete($member->foto);
-        // }
-
         // Hapus foto jika ada
-        if ($member->foto && file_exists(public_path($member->foto))) {
-            unlink(public_path($member->foto));
+        if ($member->foto && file_exists(storage_path('app/public/' . str_replace('storage/', '', $member->foto)))) {
+            unlink(storage_path('app/public/' . str_replace('storage/', '', $member->foto)));
         }
+
+        //$member->delete();
+
+        // Hapus foto dari public path jika ada
+        //if ($member->foto && file_exists(public_path($member->foto))) {
+        //    unlink(public_path($member->foto));
+        //}
 
         $member->delete();
 
