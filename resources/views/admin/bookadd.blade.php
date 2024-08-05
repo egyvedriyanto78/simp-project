@@ -67,26 +67,10 @@
                     <label for="bookCategory" class="form-label">Kategori</label>
                     <select class="form-select" id="bookCategory" name="kategori" required>
                         <option selected disabled value="">Pilih Kategori</option>
-                        <option value="Pendidikan_Agama">Pendidikan Agama</option>
-                        <option value="PPKN">PPKN</option>
-                        <option value="Fisika">Fisika</option>
-                        <option value="Kimia">Kimia</option>
-                        <option value="Matematika">Matematika</option>
-                        <option value="Biologi">Biologi</option>
-                        <option value="Sejarah">Sejarah</option>
-                        <option value="Bahasa_Inggris">Bahasa Inggris</option>
-                        <option value="Bahasa_Indonesia">Bahasa Indonesia</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Mystery">Mystery</option>
-                        <option value="Psychology">Psychology</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Sci-fi">Sci-Fi</option>
-                        <option value="Pengembangan_Diri">Pengembangan Diri</option>
-                        <option value="Filsafat">Filsafat</option>
-                        <option value="Autobiografi_&_Biografi">Autobiografi & Biografi</option>
-                        <option value="Lainnya">Lainnya</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->kategori }}">{{ str_replace('_', ' ', $category->kategori) }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
@@ -97,26 +81,14 @@
                     <label for="bookLocation" class="form-label">Lokasi</label>
                     <select class="form-select" id="bookLocation" name="lokasi" required>
                         <option selected disabled value="">Pilih Lokasi</option>
-                        <option value="A1">Rak A1</option>
-                        <option value="A2">Rak A2</option>
-                        <option value="A3">Rak A3</option>
-                        <option value="A4">Rak A4</option>
-                        <option value="B1">Rak B1</option>
-                        <option value="B2">Rak B2</option>
-                        <option value="B3">Rak B3</option>
-                        <option value="B4">Rak B4</option>
-                        <option value="C1">Rak C1</option>
-                        <option value="C2">Rak C2</option>
-                        <option value="C3">Rak C3</option>
-                        <option value="C4">Rak C4</option>
-                        <option value="D1">Rak D1</option>
-                        <option value="D2">Rak D2</option>
-                        <option value="D3">Rak D3</option>
-                        <option value="D4">Rak D4</option>
-                        <option value="E1">Rak E1</option>
-                        <option value="E2">Rak E2</option>
-                        <option value="E3">Rak E3</option>
-                        <option value="E4">Rak E4</option>
+                        <?php
+                        $racks = range('A', 'T');
+                        foreach ($racks as $rack) {
+                            for ($i = 1; $i <= 4; $i++) {
+                                echo "<option value='{$rack}{$i}'>Rak {$rack}{$i}</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah Buku</button>
