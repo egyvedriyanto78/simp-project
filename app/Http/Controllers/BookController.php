@@ -4,32 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
         $data = [
             'title' => 'Perpustakaan | Katalog',
+            'books' => Book::all(),
         ];
-        return view('admin.booklist', ['books' => $books], $data);
+        return view('admin.booklist', $data);
     }
 
     public function show($id)
     {
-        $book = Book::find($id);
         $data = [
             'title' => 'Perpustakaan | Detail Buku',
+            'book' => Book::find($id),
         ];
-        return view('admin.detail', ['book' => $book], $data);
+        return view('admin.detail', $data);
     }
 
     public function create()
     {
         $data = [
             'title' => 'Perpustakaan | Tambah Buku',
+            'categories' => Category::all(),
         ];
         return view('admin.bookadd', $data);
     }
@@ -61,11 +63,11 @@ class BookController extends Controller
 
     public function list()
     {
-        $books = Book::all();
         $data = [
             'title' => 'Perpustakaan | Daftar Buku',
+            'books' => Book::all(),
         ];
-        return view('admin.bookedit', ['books' => $books], $data);
+        return view('admin.bookedit', $data);
     }
 
     public function edit($id)
@@ -73,8 +75,10 @@ class BookController extends Controller
         $book = Book::find($id);
         $data = [
             'title' => 'Perpustakaan | Ubah Data',
+            'book' => $book,
+            'categories' => Category::all(),
         ];
-        return view('admin.bookupdate', ['book' => $book], $data);
+        return view('admin.bookupdate', $data);
     }
 
     public function update(Request $request, $id)
