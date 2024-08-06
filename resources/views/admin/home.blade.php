@@ -117,7 +117,7 @@
                             <h5 class="card-title">Top Anggota yang Paling Aktif</h5>
                             <div id="topActiveMembersChart" class="w-100"></div> <!-- Menambahkan kelas w-100 -->
 
-                            <script src="https://cdn.jsdelivr.net/npm/chroma-js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
                             <script>
                                 document.addEventListener("DOMContentLoaded", () => {
                                     const memberNames = @json($topActiveMembers->pluck('displayName'));
@@ -125,28 +125,34 @@
                                     const numMembers = memberNames.length;
                                     const colors = chroma.scale('Set1').mode('lch').colors(numMembers);
 
-                                    new ApexCharts(document.querySelector("#topActiveMembersChart"), {
-                                        series: [{
-                                            name: 'Aktivitas',
-                                            data: borrowCounts
-                                        }],
-                                        chart: {
-                                            type: 'bar',
-                                            height: 350,
-                                            width: '100%', // Tambahkan width 100%
-                                            horizontal: true
-                                        },
-                                        xaxis: {
-                                            categories: memberNames
-                                        },
-                                        plotOptions: {
-                                            bar: {
-                                                horizontal: true,
-                                                distributed: true
-                                            }
-                                        },
-                                        colors: colors
-                                    }).render();
+                                    console.log("Member Names:", memberNames);
+                                    console.log("Borrow Counts:", borrowCounts);
+                                    console.log("Colors:", colors);
+
+                                    const topActiveMembersChartElement = document.querySelector("#topActiveMembersChart");
+                                    if (topActiveMembersChartElement) {
+                                        new ApexCharts(topActiveMembersChartElement, {
+                                            series: [{
+                                                name: 'Aktivitas',
+                                                data: borrowCounts
+                                            }],
+                                            chart: {
+                                                type: 'bar',
+                                                height: 350,
+                                                width: '100%' // Pastikan width diatur dengan benar
+                                            },
+                                            plotOptions: {
+                                                bar: {
+                                                    horizontal: true,
+                                                    distributed: true
+                                                }
+                                            },
+                                            xaxis: {
+                                                categories: memberNames
+                                            },
+                                            colors: colors
+                                        }).render();
+                                    }
                                 });
                             </script>
                         </div>
@@ -158,31 +164,37 @@
                             <h5 class="card-title">Jumlah Buku per Kategori</h5>
                             <div id="booksByCategoryChart"></div>
 
-                            <script src="https://cdn.jsdelivr.net/npm/chroma-js"></script>
                             <script>
                                 document.addEventListener("DOMContentLoaded", () => {
                                     const numCategories = @json($booksByCategory->count());
                                     const colors = chroma.scale('Set1').mode('lch').colors(numCategories);
 
-                                    new ApexCharts(document.querySelector("#booksByCategoryChart"), {
-                                        series: [{
-                                            name: 'Jumlah Buku',
-                                            data: @json($booksByCategory->pluck('total'))
-                                        }],
-                                        chart: {
-                                            type: 'bar',
-                                            height: 350
-                                        },
-                                        xaxis: {
-                                            categories: @json($booksByCategory->pluck('kategori'))
-                                        },
-                                        plotOptions: {
-                                            bar: {
-                                                distributed: true
-                                            }
-                                        },
-                                        colors: colors
-                                    }).render();
+                                    console.log("Book Categories:", @json($booksByCategory->pluck('kategori')));
+                                    console.log("Book Totals:", @json($booksByCategory->pluck('total')));
+                                    console.log("Category Colors:", colors);
+
+                                    const booksByCategoryChartElement = document.querySelector("#booksByCategoryChart");
+                                    if (booksByCategoryChartElement) {
+                                        new ApexCharts(booksByCategoryChartElement, {
+                                            series: [{
+                                                name: 'Jumlah Buku',
+                                                data: @json($booksByCategory->pluck('total'))
+                                            }],
+                                            chart: {
+                                                type: 'bar',
+                                                height: 350
+                                            },
+                                            xaxis: {
+                                                categories: @json($booksByCategory->pluck('kategori'))
+                                            },
+                                            plotOptions: {
+                                                bar: {
+                                                    distributed: true
+                                                }
+                                            },
+                                            colors: colors
+                                        }).render();
+                                    }
                                 });
                             </script>
                         </div>

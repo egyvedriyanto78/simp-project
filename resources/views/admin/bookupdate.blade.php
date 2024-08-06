@@ -36,10 +36,12 @@
                     <label for="bookYear" class="form-label">Tahun Terbit</label>
                     <select class="form-select" id="bookYear" name="tahun_terbit" required>
                         <option selected disabled value="">Pilih Tahun</option>
-                        @for ($year = 2000; $year <= 2024; $year++)
-                            <option value="{{ $year }}" {{ $book->tahun_terbit == $year ? 'selected' : '' }}>{{ $year }}
-                            </option>
-                        @endfor
+                        <?php
+                        for ($year = 1990; $year <= 2040; $year++) {
+                            $selected = $book->tahun_terbit == $year ? 'selected' : '';
+                            echo "<option value='{$year}' {$selected}>{$year}</option>";
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="mb-3">
