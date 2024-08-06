@@ -39,7 +39,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id' => 'required|string|unique:books',
+            // 'id' tidak perlu divalidasi karena akan digenerate
             'judul' => 'required|string|max:255',
             'sampul' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tahun_terbit' => 'required|integer',
@@ -48,6 +48,21 @@ class BookController extends Controller
             'lokasi' => 'required|string',
         ]);
 
+        // Generate book ID
+        $rak = substr($validatedData['lokasi'], 0, 2); // 2 karakter pertama dari lokasi
+        $tahunTerbit = $validatedData['tahun_terbit'];
+        $randomString = strtoupper(Str::random(4)); // 4 karakter random
+        $bookId = "{$rak}{$tahunTerbit}{$randomString}";
+
+        // Check if ID already exists (optional, to handle collision, though rare)
+        while (Book::where('id', $bookId)->exists()) {
+            $randomString = strtoupper(Str::random(4));
+            $bookId = "{$rak}{$tahunTerbit}{$randomString}";
+        }
+
+        $validatedData['id'] = $bookId;
+
+        // Handle file upload
         if ($request->hasFile('sampul')) {
             $imageName = time() . '.' . $request->sampul->extension();
             //$request->sampul->move(public_path('assets/img/book'), $imageName);
