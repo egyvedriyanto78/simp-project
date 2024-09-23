@@ -43,7 +43,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Kategori:</strong>
-                            <span>{{ $book->kategori }}</span>
+                            <span>{{ str_replace('_', ' ', $book->kategori) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Stok:</strong>
