@@ -234,6 +234,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Waktu Saat Ini (Lampung)</h5>
+                            <div id="date" style="font-size: 20px; font-weight: bold;"></div>
                             <div id="clock" style="font-size: 24px; font-weight: bold;"></div>
                         </div>
                         <script>
@@ -241,10 +242,17 @@
                                 const response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Jakarta');
                                 const data = await response.json();
                                 const dateTime = new Date(data.datetime);
+
+                                // Format waktu (jam, menit, detik)
                                 const hours = dateTime.getHours().toString().padStart(2, '0');
                                 const minutes = dateTime.getMinutes().toString().padStart(2, '0');
                                 const seconds = dateTime.getSeconds().toString().padStart(2, '0');
                                 document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+
+                                // Format hari dan tanggal
+                                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                                const formattedDate = dateTime.toLocaleDateString('id-ID', options);
+                                document.getElementById('date').innerText = formattedDate;
                             }
 
                             // Fetch time initially and then update every second

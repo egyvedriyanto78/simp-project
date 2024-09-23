@@ -33,7 +33,7 @@
                     <select class="form-select" id="bookYear" name="tahun_terbit" required>
                         <option selected disabled value="">Pilih Tahun</option>
                         <?php
-                        for ($year = 1990; $year <= 2040; $year++) {
+                        for ($year = 1900; $year <= 2045; $year++) {
                             echo "<option value='{$year}'>{$year}</option>";
                         }
                         ?>

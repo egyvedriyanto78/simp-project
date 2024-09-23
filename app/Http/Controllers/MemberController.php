@@ -20,9 +20,9 @@ class MemberController extends Controller
         return view('admin.memberlist', $data);
     }
 
-    public function show($id)
+    public function show($uid)
     {
-        $member = Member::find($id);
+        $member = Member::find($uid);
         $data = [
             'title' => 'Perpustakaan | Detail Anggota',
             'member' => $member,
