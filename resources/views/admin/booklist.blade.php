@@ -48,7 +48,7 @@
                                 <div class="card mb-3" style="width: 420px">
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/puhsepuh.jpg') }}"
+                                            <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/coverbook.jpg') }}"
                                                 class="img-fluid rounded-start" alt="Sampul Buku">
                                         </div>
                                         <div class="col-md-8">
