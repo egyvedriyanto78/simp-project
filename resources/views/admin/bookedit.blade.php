@@ -41,9 +41,8 @@
                             <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/puhsepuh.jpg') }}"
                                 class="img-fluid rounded-start table-image" alt="Sampul Buku">
                         </td>
-
                         <td>{{ $book->tahun_terbit }}</td>
-                        <td>{{ $book->kategori }}</td>
+                        <td>{{ str_replace('_', ' ', $book->kategori) }}</td>
                         <td>{{ $book->stok }}</td>
                         <td>{{ $book->lokasi }}</td>
                         <td>
