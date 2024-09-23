@@ -38,7 +38,7 @@
                         <td>{{ $book->id }}</td>
                         <td>{{ $book->judul }}</td>
                         <td>
-                            <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/puhsepuh.jpg') }}"
+                            <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/coverbook.jpg') }}"
                                 class="img-fluid rounded-start table-image" alt="Sampul Buku">
                         </td>
                         <td>{{ $book->tahun_terbit }}</td>

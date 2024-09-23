@@ -23,7 +23,7 @@
             <div class="row">
                 <!-- Book Cover -->
                 <div class="col-lg-4 text-center mb-3">
-                    <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/puhsepuh.jpg') }}"
+                    <img src="{{ $book->sampul ? asset($book->sampul) : asset('assets/img/book/coverbook.jpg') }}"
                         class="img-fluid rounded shadow book-cover" alt="Sampul Buku">
                 </div>
                 <!-- Book Details -->
